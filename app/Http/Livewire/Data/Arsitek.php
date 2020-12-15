@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Data;
 
 use App\Models\Arsitek as ModelArsitek;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class Arsitek extends Component
@@ -11,7 +12,11 @@ class Arsitek extends Component
 
     public function mount()
     {
-        $this->data = ModelArsitek::all();
+        $this->data = ModelArsitek::latest()->get();
+        // foreach ($this->data as $d) {
+        //     $foto = Storage::get($d->ktp);
+        //     dd($foto);
+        // }
     }
 
     public function detail($id)

@@ -36,19 +36,3 @@
 @push('js')
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 @endpush
-
-@push('script')
-<script>
-    $(document).ready(function() {
-        $('.select2').select2();
-        $('.select2').on('select2:select', function () {
-            // @this.data = $(this).val()
-
-        });
-        $('.select2').on('change', function(){
-            @this.data = $(this).val()
-        });
-    });
-
-</script>
-@endpush

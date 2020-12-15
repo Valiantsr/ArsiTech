@@ -20,8 +20,8 @@
             <td>{{$k->nama}}</td>
             <td>{{$k->tanggal}}</td>
             <td>{{$k->akhir}}</td>
-            <td>{{$k->konsep}}</td>
-            <td>{{$k->luas_bangunan}}</td>
+            <td>{{$k->konsep->nama}}</td>
+            <td>{{$k->luas_bangunan}} m<sup>2</sup></td>
             <td>
                 @if ($k->status == 'terverifikasi')
                 <span class="badge badge-success">{{$k->status}}</span>

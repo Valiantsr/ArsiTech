@@ -82,15 +82,38 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header"></li>
                 <li class="nav-item">
-                    <a href="{{ route('arsitek.profil') }}"
-                        class="nav-link {{ $active == 'profil.index' ? 'active' : '' }}">
+                    <a href="{{ route('desain.index') }}"
+                        class="nav-link {{ $active == 'desain' ? 'active' : '' }}">
+                        <x-icon class="nav-icon fas fa-" type="book" />
+                        <p>
+                            Desain
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header"></li>
+                <li class="nav-item has-treeview {{ $active == 'profil.index' || $active == 'portofolio' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
                         <x-icon class="nav-icon fas fa-" type="user" />
                         <p>
                             Profil
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('arsitek.profil') }}" class="nav-link {{ $active == 'profil.index' ? 'active' : '' }}">
+                            <x-icon class="nav-icon fas fa-" type="circle" />
+                                <p>Profil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('portofolio.index') }}" class="nav-link {{ $active == 'portofolio' ? 'active' : '' }}">
+                            <x-icon class="nav-icon fas fa-" type="circle" />
+                                <p>Portofolio</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 @else
                 <li class="nav-item">

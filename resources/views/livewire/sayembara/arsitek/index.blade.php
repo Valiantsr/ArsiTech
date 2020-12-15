@@ -19,12 +19,12 @@
             <td>{{$k->nama}}</td>
             <td>{{$k->tanggal}}</td>
             <td>{{$k->akhir}}</td>
-            <td>{{$k->konsep}}</td>
-            <td>{{$k->luas_bangunan}}</td>
+            <td>{{$k->konsep->nama}}</td>
+            <td>{{$k->luas_bangunan}} m<sup>2</sup></td>
             <td>
                 <x-button.button wire:click="ikut({{$k->id}})" color="primary" class="btn-sm">
                     <x-icon type="pencil-alt" />
-                    Ikuti Sayembara
+                    Join
                 </x-button.button>
             </td>
             <?php $no++ ?>

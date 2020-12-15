@@ -63,24 +63,12 @@
         $('#akhir').on('change', function(){
             @this.akhir = $(this).val()
         });
-        // $("#konsep").select2({
-        //     autoclose: true,
-        //     placeholder: 'Pilih Data',
-        // });
-        // $(document).on('change', '#konsep', function (e) {
-        //     @this.set(e.target.value);
-        // });
-        // $('#konsep').on('change', function(){
-        //     @this.konsep = $(this).val()
-        // });
-        // document.addEventListener("livewire:load", function (event) {
-        //     window.livewire.hook('afterDomUpdate', () => {
-        //         $('#konsep').select2({
-        //             placeholder: 'Select an option',
-        //         });
-        //     });
-        // });
+        $('#konsep').select2();
+        $('#konsep').on('select2:select', function () {});
+        $('#konsep').on('change', function(){
+            @this.data = $(this).val()
+        });
     });
-
 </script>
 @endpush
+

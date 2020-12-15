@@ -17,9 +17,7 @@ class CreatePortofolioTable extends Migration
             $table->id();
             $table->string('nama');
             $table->text('deskripsi');
-            $table->string('gambar');
             $table->foreignId('arsitek_id')->constrained('arsitek')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('konsep_id')->constrained('konsep')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

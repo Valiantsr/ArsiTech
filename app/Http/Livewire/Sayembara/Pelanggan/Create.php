@@ -10,18 +10,19 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $nama, $awal, $akhir, $konsep, $luas_bangunan, $data;
+    public $nama, $awal, $akhir, $konsep, $luas_bangunan, $konsepId, $data;
 
     public function mount()
     {
         $this->konsep = Konsep::all();
+        // $this->konsepId = $konsep->id;
     }
 
     protected $rules = [
         'nama'          => 'required',
         'awal'          => 'required|before:akhir',
         'akhir'         => 'required|after:awal',
-        'konsep'        => 'required',
+        'data'          => 'required',
         'luas_bangunan' => 'required|numeric'
     ];
 
@@ -39,7 +40,7 @@ class Create extends Component
             'nama'          => $this->nama,
             'tanggal'       => $this->awal,
             'akhir'         => $this->akhir,
-            'konsep_id'     => $this->konsep,
+            'konsep_id'     => $this->data,
             'luas_bangunan' => $this->luas_bangunan,
             'pelanggan_id'  => \Auth::user()->pelanggan->id
         ]);

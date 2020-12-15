@@ -13,6 +13,26 @@ class KonsepSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        \DB::table('konsep')->truncate();
+        \DB::table('konsep')->insert([
+            [
+                'nama'  => 'mediterania',
+                'harga' => '70000',
+            ],
+            [
+                'nama'  => 'klasik',
+                'harga' => '30000',
+            ],
+            [
+                'nama'  => 'modern',
+                'harga' => '40000',
+            ],
+            [
+                'nama'  => 'minimalis',
+                'harga' => '30000',
+            ]
+
+        ]);
     }
 }

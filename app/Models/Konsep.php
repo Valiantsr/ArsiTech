@@ -20,4 +20,9 @@ class Konsep extends Model
     {
         return $this->hasMany('App\Models\Sayembara');
     }
+
+    public function detail()
+    {
+        return $this->hasOne('App\Models\DetailPorto');
+    }
 }

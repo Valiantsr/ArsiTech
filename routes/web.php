@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DesainController;
 use App\Http\Controllers\Admin\KonsepController;
 use App\Http\Controllers\Admin\SayembaraController as AdminSayembaraController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Arsitek\DashboardController as ArsitekDashboardController;
+use App\Http\Controllers\Arsitek\PortofolioController;
 use App\Http\Controllers\Pelanggan\DashboardController as PelangganDashboardController;
 
 use App\Http\Controllers\Arsitek\ProfilController as ProfilArsitek;
@@ -58,6 +60,14 @@ Route::group(['middleware' => ['auth']], function () {
 
         //sayembara
         Route::get('/sayembara', [ArsitekSayembaraController::class, 'index'])->name('sayembara.index');
+
+        //Desain
+        Route::get('/desain', DesainController::class)->name('desain.index');
+        Route::get('/desain/create', [DesainController::class, 'create'])->name('desain.create');
+
+        //Portofolio
+        Route::get('/portofolio', PortofolioController::class)->name('portofolio.index');
+        Route::get('/portofolio/create', [PortofolioController::class, 'create'])->name('portofolio.create');
     });
 
     Route::group(['prefix' => 'pelanggan', 'middleware' => ['role:pelanggan']], function () {

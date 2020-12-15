@@ -17,6 +17,7 @@ class Index extends Component
 
     public function verifikasi($id)
     {
+        // dd('masuk');
         $data = Sayembara::find($id);
         $data->update([
             'status' => 'terverifikasi'

@@ -13,7 +13,8 @@ class Desain extends Model
 
     protected $fillable = [
         'arsitek_id',
-        'gambar'
+        'gambar',
+        'nama'
     ];
 
     public function transaksi()
