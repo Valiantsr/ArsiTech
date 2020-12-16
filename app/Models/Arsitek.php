@@ -28,4 +28,9 @@ class Arsitek extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function transaksi()
+    {
+        return $this->hasMany('App\Models\Transaksi');
+    }
 }

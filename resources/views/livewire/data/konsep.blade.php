@@ -23,9 +23,9 @@
             <td>{{$k->nama}}</td>
             <td>{{number_format($k->harga)}} /m<sup>2</sup></td>
             <td>
-                <x-button.button wire:click="detail({{$k->id}})" color="primary" class="btn-sm">
+                <x-button.button wire:click="edit({{$k->id}})" color="primary" class="btn-sm">
                     <x-icon type="pencil-alt" />
-                    Detail
+                    Ubah
                 </x-button.button>
             </td>
             <?php $no++ ?>

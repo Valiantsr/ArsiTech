@@ -27,12 +27,8 @@ class Create extends Component
         $this->validate();
 
         $file = $this->gambar;
-
         $gambar = 'desain_' . time() . '_' . auth()->user()->arsitek->nama_depan . '.' . $file->getClientOriginalExtension();
-
         $alamat_gambar = $this->gambar->storeAs('foto/arsitek/desain', $gambar);
-        // dd($alamat_gambar);
-
         Desain::create([
             'nama' => $this->nama,
             'gambar'  => $alamat_gambar,

@@ -20,9 +20,9 @@ class Konsep extends Component
         return redirect()->route('konsep.create');
     }
 
-    public function detail($id)
+    public function edit($id)
     {
-        return redirect()->route('konsep.detail', $id);
+        return redirect()->route('konsep.edit', $id);
     }
 
     public function render()

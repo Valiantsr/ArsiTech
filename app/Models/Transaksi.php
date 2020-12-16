@@ -14,6 +14,7 @@ class Transaksi extends Model
     protected $fillable = [
         'sayembara_id',
         'desain_id',
+        'arsitek_id',
         'total',
         'status'
     ];
@@ -26,5 +27,10 @@ class Transaksi extends Model
     public function sayembara()
     {
         return $this->belongsTo('App\Models\Sayembara');
+    }
+
+    public function arsitek()
+    {
+        return $this->belongsTo('App\Models\Arsitek');
     }
 }

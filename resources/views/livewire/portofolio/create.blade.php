@@ -23,28 +23,25 @@
         <x-input.select2 data="$konsep" select-type="label" id="konsep" name="konsep">
             <x-slot name="label">Konsep</x-slot>
             <x-slot name="opt">
-                @foreach ($konsep as $k)
+                @foreach ($datakonsep as $k)
                     <option value="{{$k->id}}">{{$k->nama}} Harga = Rp. {{number_format($k->harga)}} /m<sup>2</sup></option>
                 @endforeach
             </x-slot>
-            @error('data')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
         </x-input.select2>
-        {{-- {{dd(is_array($desain))}} --}}
+        @error('konsep')
+        <span class="text-danger">{{$message}}</span>
+        @enderror
         <x-input.select2 data="$desain" select-type="label" id="desain" name="desain">
             <x-slot name="label">Desain</x-slot>
             <x-slot name="opt">
-                {{-- @if (is_array($desain)) --}}
-                    @foreach ($desain as $d)
-                        <option value="{{$d->id}}">{{$d->nama}}</option>
-                    @endforeach
-                {{-- @endif --}}
+                @foreach ($datadesain as $d)
+                    <option value="{{$d->id}}">{{$d->nama}}</option>
+                @endforeach
             </x-slot>
-            @error('data1')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
         </x-input.select2>
+        @error('desain')
+        <span class="text-danger">{{$message}}</span>
+        @enderror
 
         <x-button.button type="submit" color="primary" class="float-right">Tambah Data Portofolio
         </x-button.button>
@@ -58,13 +55,13 @@
         $('#konsep').select2();
         $('#konsep').on('select2:select', function () {});
         $('#konsep').on('change', function(){
-            @this.data = $(this).val()
+            @this.konsep = $(this).val()
         });
 
         $('#desain').select2({});
         $('#desain').on('select2:select', function () {});
         $('#desain').on('change', function(){
-            @this.data1 = $(this).val()
+            @this.desain = $(this).val()
         });
     });
 

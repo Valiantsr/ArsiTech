@@ -4,10 +4,10 @@
         <option></option>
         {{$opt}}
     </select>
-    {{-- @error(strtolower(substr($label, 0, strrpos($label, ' ') ? strrpos($label, ' ') : strlen($label))))
-    <span class="text-danger">{{$message}}</span>
-    @enderror --}}
+    {{-- {{dd(strtolower(substr($label, 0, strrpos($label, ' ') ? strrpos($label, ' ') : strlen($label))))}} --}}
+    
 </div>
+
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">

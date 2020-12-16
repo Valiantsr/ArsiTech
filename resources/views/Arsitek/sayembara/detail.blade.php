@@ -1,5 +1,5 @@
 @extends('layouts.myview')
 
 @section('content')
-@livewire('konsep.update', ['id'=>$id])
+@livewire('sayembara.arsitek.detail', ['id'=>$id])
 @endsection

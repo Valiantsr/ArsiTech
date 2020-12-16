@@ -10,15 +10,14 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $portoId, $nama, $deskripsi, $desain, $data1, $data;
+    public $portoId, $nama, $deskripsi, $datadesain, $desain, $konsep;
 
     public function mount()
     {
-        $data = Portofolio::where('arsitek_id', \Auth::user()->arsitek->id)->get();
-        $this->desain = Desain::where('arsitek_id', \Auth::user()->arsitek->id)->get();
-        // dd($cek);
-        if ($data->isEmpty()) {
-        } else {
+        $data = Portofolio::where('arsitek_id', \Auth::user()->arsitek->id)->first();
+        $this->datadesain = Desain::where('arsitek_id', \Auth::user()->arsitek->id)->get();
+        // dd($data);
+        if ($data) {
             $this->portoId = $data->id;
             $this->nama = $data->nama;
             $this->deskripsi = $data->deskripsi;
@@ -28,6 +27,8 @@ class Create extends Component
     protected $rules = [
         'nama'  => 'required|string',
         'deskripsi' => 'required',
+        'konsep' => 'required',
+        'desain' => 'required|unique:detail_portofolio,desain_id'
     ];
 
     public function updated($propertyName)
@@ -47,8 +48,8 @@ class Create extends Component
 
         DetailPorto::create([
             'portofolio_id' => $porto->id,
-            'desain_id'     => $this->data1,
-            'konsep_id'     => $this->data
+            'desain_id'     => $this->desain,
+            'konsep_id'     => $this->konsep
         ]);
 
         session()->flash('message', 'Data Portofolio ' . $this->nama . ' Berhasil Ditambahkan.');
@@ -58,8 +59,7 @@ class Create extends Component
     public function render()
     {
         return view('livewire.portofolio.create', [
-            'konsep' => Konsep::all(),
-            // 'desain' => Desain::where('arsitek_id', \Auth::user()->arsitek->id)->get()
+            'datakonsep' => Konsep::all(),
         ]);
     }
 }

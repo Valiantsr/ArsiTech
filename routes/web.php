@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
         // Konsep
         Route::get('/konsep', [KonsepController::class, 'index'])->name('konsep.index');
         Route::get('/konsep/create', [KonsepController::class, 'create'])->name('konsep.create');
-        Route::get('/konsep/edit', [KonsepController::class, 'edit'])->name('konsep.edit');
+        Route::get('/konsep/edit/{id}', [KonsepController::class, 'edit'])->name('konsep.edit');
         Route::get('/konsep/detail/{id}', [KonsepController::class, 'show'])->name('konsep.detail');
     });
 
@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         //sayembara
         Route::get('/sayembara', [ArsitekSayembaraController::class, 'index'])->name('sayembara.index');
+        Route::get('/sayembara/detail/{id}', [ArsitekSayembaraController::class, 'detail'])->name('sayembara.detail');
 
         //Desain
         Route::get('/desain', DesainController::class)->name('desain.index');

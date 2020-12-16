@@ -11,20 +11,18 @@
             <x-slot name="label">Deskripsi</x-slot>
         </x-input.textarea>
 
-        @if ($portoId == null) 
-        <x-button.button wire:click="edit" color="primary" class="float-right">Ganti Profil
+        @if ($portoId) 
+        <x-button.button wire:click="edit" color="primary" class="float-right">Ganti Data
         </x-button.button>
         @endif
     </x-form>
     @endif
 
     <x-table title="Data Portofolio" id="dt">
-        @if ($portoId == null)
         <x-button.button wire:click="tambah" color="success" class="btn-sm float-right mb-2">
             <x-icon type="plus" />
             Tambah
         </x-button.button>
-        @endif
         <thead>
             <tr>
                 <th>No</th>
@@ -33,7 +31,6 @@
                 <th>Action</th>
             </tr>
         </thead>
-        {{-- {{dd($data)}} --}}
         <tbody>
             <?php $no=1 ?>
             @foreach ($detail as $k)
@@ -45,6 +42,13 @@
                     <x-button.button wire:click="detail({{$k->id}})" color="primary" class="btn-sm">
                         <x-icon type="pencil-alt" />
                         Detail
+                    </x-button.button><x-button.button wire:click="detail({{$k->id}})" color="info" class="btn-sm">
+                        <x-icon type="pencil-alt" />
+                        Ubah
+                    </x-button.button>
+                    <x-button.button wire:click="detail({{$k->id}})" color="danger" class="btn-sm">
+                        <x-icon type="trash" />
+                        Hapus
                     </x-button.button>
                 </td>
                 <?php $no++ ?>

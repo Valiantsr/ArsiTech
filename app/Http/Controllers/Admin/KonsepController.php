@@ -25,12 +25,13 @@ class KonsepController extends Controller
         ]);
     }
 
-    public function edit()
+    public function edit($id)
     {
         return view('admin.konsep.ubah', [
             'title' => 'konsep',
             'subtitle' => 'edit',
-            'active' => 'konsep'
+            'active' => 'konsep',
+            'id' => $id
         ]);
     }
 }

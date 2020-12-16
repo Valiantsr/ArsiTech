@@ -17,6 +17,10 @@ class TambahStatusDiSayembara extends Migration
             $table->enum('status', [
                 'terverifikasi',
                 'belum diverifikasi',
+                'ditolak',
+                'menunngu',
+                'pending',
+                'selesai'
             ])->default('belum diverifikasi');
         });
     }

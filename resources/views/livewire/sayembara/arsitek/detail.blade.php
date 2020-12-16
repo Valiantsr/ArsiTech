@@ -1,3 +1,42 @@
-<div>
-    {{-- Close your eyes. Count to one. That is how long forever feels. --}}
-</div>
+<x-form>
+    <x-slot name="title">Data {{$nama}}</x-slot>
+
+    <form wire:submit.prevent="desain" enctype="multipart/form-data" method="POST">
+
+        <x-input.input wire:model="nama" readonly>
+            <x-slot name="label">nama</x-slot>
+        </x-input.input>
+
+        <x-input.input wire:model="awal" readonly>
+            <x-slot name="label">Tanggal Mulai</x-slot>
+        </x-input.input>
+
+        <x-input.input wire:model="akhir" readonly>
+            <x-slot name="label">Tanggal Selesai</x-slot>
+        </x-input.input>
+
+        <x-input.input wire:model="luas" readonly>
+            <x-slot name="label">Luas</x-slot>
+        </x-input.input>
+
+        <x-input.input wire:model="konsep" readonly>
+            <x-slot name="label">Konsep</x-slot>
+        </x-input.input>
+
+        <x-input.input wire:model="pelanggan" readonly>
+            <x-slot name="label">Pelanggan</x-slot>
+        </x-input.input>
+
+        @if ($desain)
+            <img src="{{ asset('storage/'.$desain) }}" alt="Desain" srcset="">
+        @else
+        <x-input.input wire:model="desain" type="file">
+            <x-slot name="label">Desain</x-slot>
+        </x-input.input>
+        @endif
+        <x-button.button type="submit" color="primary" class="float-right">Tambah Desain
+        </x-button.button>
+    </form>
+    <x-button.button wire:click="kembali" color="danger">Kembali
+    </x-button.button>
+</x-form>

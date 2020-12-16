@@ -17,6 +17,10 @@ class TambahStatusDiTransaksi extends Migration
             $table->enum('status', [
                 'terverifikasi',
                 'belum diverifikasi',
+                'menunggu desain',
+                'menunggu pembayaran',
+                'selesai',
+                'ditolak'
             ])->default('belum diverifikasi');
         });
     }

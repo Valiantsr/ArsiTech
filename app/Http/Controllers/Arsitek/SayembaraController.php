@@ -15,4 +15,14 @@ class SayembaraController extends Controller
             'active'        => 'sayembara',
         ]);
     }
+
+    public function detail($id)
+    {
+        return view('arsitek.sayembara.detail', [
+            'title'         => 'sayembara',
+            'subtitle'      => 'detail',
+            'active'        => 'sayembara',
+            'id'            => $id
+        ]);
+    }
 }
