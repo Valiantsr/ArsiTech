@@ -59,10 +59,17 @@
                     <td>{{$w->sayembara->konsep->nama}}</td>
                     <td>{{$w->sayembara->luas_bangunan}} m<sup>2</sup></td>
                     <td>
+                        @if ($w->desain_id)
+                        <x-button.button wire:click="desain({{$w->sayembara->id}})" color="primary" class="btn-sm">
+                            <x-icon type="pencil-alt" />
+                            Detail
+                        </x-button.button>
+                        @else
                         <x-button.button wire:click="desain({{$w->sayembara->id}})" color="primary" class="btn-sm">
                             <x-icon type="pencil-alt" />
                             Upload Desain
                         </x-button.button>
+                        @endif
                     </td>
                     <?php $no++ ?>
                 </tr>

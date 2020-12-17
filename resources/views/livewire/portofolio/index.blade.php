@@ -31,6 +31,7 @@
                 <th>Action</th>
             </tr>
         </thead>
+        {{-- {{dd($detail)}} --}}
         <tbody>
             <?php $no=1 ?>
             @foreach ($detail as $k)

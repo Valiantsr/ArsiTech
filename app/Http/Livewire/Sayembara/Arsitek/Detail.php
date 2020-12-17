@@ -17,7 +17,7 @@ class Detail extends Component
     public function mount($id)
     {
         $data = Sayembara::find($id);
-        // dd($data);
+        // dd($data->transaksi->desain);
         $this->sayembaraId = $data->id;
         $this->nama = $data->nama;
         $this->awal = $data->tanggal;
@@ -26,6 +26,7 @@ class Detail extends Component
         $this->pelanggan = $data->pelanggan->nama_depan . ' ' . $data->pelanggan->nama_belakang;
         $this->konsep = $data->konsep->nama;
         $this->harga = $data->konsep->harga;
+        $this->desain = $data->transaksi->desain->gambar;
     }
 
     protected $rules = [
@@ -44,10 +45,6 @@ class Detail extends Component
 
     public function desain()
     {
-        // Transaksi::where('sayembara_id', $this->sayembaraId)
-        //     ->where('arsitek_id,', auth()->user()->arsitek->id)
-        //     ->first();
-        // dd($data);
         $this->validate();
         $file = $this->desain;
         $desain = 'desain_' . time() . '_' . auth()->user()->arsitek->nama_depan . '.' . $file->getClientOriginalExtension();

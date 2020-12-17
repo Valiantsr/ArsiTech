@@ -10,12 +10,11 @@ use function PHPUnit\Framework\isEmpty;
 
 class Index extends Component
 {
-    public $portoId, $nama, $deskripsi, $detail;
+    public $portoId, $nama, $deskripsi, $detail = [];
 
     public function mount()
     {
         $data = Portofolio::where('arsitek_id', \Auth::user()->arsitek->id)->first();
-        // dd($data->id);
         if ($data) {
             $det = DetailPorto::where('portofolio_id', $data->id)->get();
 

@@ -26,17 +26,21 @@
         <x-input.input wire:model="pelanggan" readonly>
             <x-slot name="label">Pelanggan</x-slot>
         </x-input.input>
-
+        {{-- dd() --}}
         @if ($desain)
+        <x-container class="text-center">
+            <x-input.label>Desain</x-input.label>
             <img src="{{ asset('storage/'.$desain) }}" alt="Desain" srcset="">
+        </x-container>
         @else
         <x-input.input wire:model="desain" type="file">
             <x-slot name="label">Desain</x-slot>
         </x-input.input>
-        @endif
+
         <x-button.button type="submit" color="primary" class="float-right">Tambah Desain
         </x-button.button>
+        @endif
     </form>
-    <x-button.button wire:click="kembali" color="danger">Kembali
+    <x-button.button wire:click="kembali" color="danger" class="mt-3">Kembali
     </x-button.button>
 </x-form>
