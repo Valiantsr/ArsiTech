@@ -12,7 +12,7 @@ class Detail extends Component
 {
     use WithFileUploads;
 
-    public $sayembaraId, $nama, $awal, $akhir, $luas, $konsep, $harga, $pelanggan, $desain;
+    public $sayembaraId, $nama, $awal, $akhir, $luas, $konsep, $harga, $pelanggan, $desain, $status;
 
     public function mount($id)
     {
@@ -26,7 +26,15 @@ class Detail extends Component
         $this->pelanggan = $data->pelanggan->nama_depan . ' ' . $data->pelanggan->nama_belakang;
         $this->konsep = $data->konsep->nama;
         $this->harga = $data->konsep->harga;
-        $this->desain = $data->transaksi->desain->gambar;
+        if ($data->transaksi->desain) {
+            $this->desain = $data->transaksi->desain->gambar;
+        }
+        // $data1 = Transaksi::where([
+        //     ['sayembara_id', '=', $this->sayembaraId],
+        //     ['arsitek_id', '=', auth()->user()->arsitek->id]
+        // ])->first();
+        $this->status = $data->status;
+        // dd($data->status);
     }
 
     protected $rules = [
@@ -58,12 +66,14 @@ class Detail extends Component
         $desain = Desain::create([
             'nama' => 'Sayembara ' . $this->nama,
             'gambar'  => $alamat_desain,
-            'arsitek_id' => auth()->user()->arsitek->id
+            'arsitek_id' => auth()->user()->arsitek->id,
+            // 'status' => 'diproses'
         ]);
 
         $data->update([
             'desain_id' => $desain->id,
-            'total' => $this->harga * $this->luas
+            'total' => $this->harga * $this->luas,
+            'status' => 'diproses'
         ]);
 
         $this->emit('alert', ['type' => 'success', 'message' => 'Desain Berhasil di Unggah']);

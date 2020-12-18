@@ -15,11 +15,12 @@ class TambahStatusDiSayembara extends Migration
     {
         Schema::table('sayembara', function (Blueprint $table) {
             $table->enum('status', [
-                'terverifikasi',
-                'belum diverifikasi',
                 'ditolak',
-                'menunngu',
-                'pending',
+                'belum diverifikasi',
+                'terverifikasi',
+                'menunggu desain',
+                'diproses',
+                'menunggu pembayaran',
                 'selesai'
             ])->default('belum diverifikasi');
         });

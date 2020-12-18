@@ -15,13 +15,10 @@ class TambahStatusDiTransaksi extends Migration
     {
         Schema::table('transaksi', function (Blueprint $table) {
             $table->enum('status', [
-                'terverifikasi',
-                'belum diverifikasi',
-                'menunggu desain',
-                'menunggu pembayaran',
-                'selesai',
-                'ditolak'
-            ])->default('belum diverifikasi');
+                'ditolak',
+                'diproses',
+                'dipilih',
+            ])->default('diproses');
         });
     }
 

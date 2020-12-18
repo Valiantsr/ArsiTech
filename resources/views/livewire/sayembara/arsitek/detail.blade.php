@@ -33,13 +33,15 @@
             <img src="{{ asset('storage/'.$desain) }}" alt="Desain" srcset="">
         </x-container>
         @else
-        <x-input.input wire:model="desain" type="file">
+        <x-input.input wire:model.lazy="desain" type="file">
             <x-slot name="label">Desain</x-slot>
         </x-input.input>
-
+        @endif
+        @if ($status == 'menunggu desain')
         <x-button.button type="submit" color="primary" class="float-right">Tambah Desain
         </x-button.button>
         @endif
+        
     </form>
     <x-button.button wire:click="kembali" color="danger" class="mt-3">Kembali
     </x-button.button>

@@ -5,9 +5,11 @@
         </div>
         <div class="card-body">
             {{ isset($button) ? $button : null }}
-            <table id="dt" class="table table-bordered table-striped ">
-                {{ $slot }}
-            </table>
+            <x-container class="table-responsive">
+                <table id="dt" class="table table-bordered table-striped ">
+                    {{ $slot }}
+                </table>
+            </x-container>
         </div>
     </div>
 </div>

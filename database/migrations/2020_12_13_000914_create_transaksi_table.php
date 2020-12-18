@@ -16,7 +16,7 @@ class CreateTransaksiTable extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sayembara_id')->constrained('sayembara')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('desain_id')->constrained('desain')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->foreignId('desain_id')->nullable()->constrained('desain')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('arsitek_id')->constrained('arsitek')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
