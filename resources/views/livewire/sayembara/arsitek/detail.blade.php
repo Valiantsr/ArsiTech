@@ -37,11 +37,11 @@
             <x-slot name="label">Desain</x-slot>
         </x-input.input>
         @endif
-        @if ($status == 'menunggu desain')
+        @if ($status == 'menunggu')
         <x-button.button type="submit" color="primary" class="float-right">Tambah Desain
         </x-button.button>
         @endif
-        
+
     </form>
     <x-button.button wire:click="kembali" color="danger" class="mt-3">Kembali
     </x-button.button>

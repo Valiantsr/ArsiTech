@@ -18,7 +18,7 @@ class TambahStatusDiSayembara extends Migration
                 'ditolak',
                 'belum diverifikasi',
                 'terverifikasi',
-                'menunggu desain',
+                'menunggu',
                 'diproses',
                 'menunggu pembayaran',
                 'selesai'

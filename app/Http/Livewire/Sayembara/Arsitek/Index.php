@@ -13,35 +13,38 @@ class Index extends Component
     public function mount()
     {
         $this->verif = Sayembara::where('status', 'terverifikasi')
-            ->orWhere('status', 'menunggu desain')
+            ->orWhere('status', 'menunggu')
             ->get();
-        $this->waiting = Sayembara::where('status', 'menunggu desain')->get();
+        $this->waiting = Sayembara::where('status', 'menunggu')->get();
         $this->diproses = Transaksi::where('arsitek_id', auth()->user()->arsitek->id)
             ->whereNotNull('desain_id')
             ->get();
+        // dd($this->waiting, $this->diproses);
     }
 
     public function join($id)
     {
         $data = Sayembara::find($id);
-        // dd($data);
         $exist = Transaksi::where([
             ['sayembara_id', '=', $data->id],
             ['arsitek_id', '=', auth()->user()->arsitek->id]
         ])->exists();
+        // dd($exist);
         if ($exist) {
-            // $this->emit('alert', ['type' => 'error', 'message' => 'Data Sudah Ditambah silakan upload desain']);
             session()->flash('message', 'Data Sudah Ditambah silakan upload desain.');
             return redirect()->route('sayembara.index');
         } else {
             Transaksi::create([
                 'sayembara_id'  => $data->id,
                 'total'         => 0,
-                'arsitek_id'    => auth()->user()->arsitek->id
+                'arsitek_id'    => auth()->user()->arsitek->id,
+                'status'        => 'diproses'
             ]);
+
             $data->update([
-                'status' => 'menunggu desain'
+                'status' => 'menunggu'
             ]);
+
             session()->flash('message', 'Data ' . $data->nama . ' Berhasil diikuti.');
             return redirect()->route('sayembara.detail', $id);
         }
