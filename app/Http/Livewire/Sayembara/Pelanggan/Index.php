@@ -19,6 +19,11 @@ class Index extends Component
         return redirect()->route('pelanggan.sayembara.detail', $id);
     }
 
+    public function bayar($id)
+    {
+        return redirect()->route('pelanggan.pembayaran.create', $id);
+    }
+
     public function render()
     {
         return view('livewire.sayembara.pelanggan.index');

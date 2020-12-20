@@ -33,7 +33,7 @@
             <img src="{{ asset('storage/'.$desain) }}" alt="Desain" srcset="">
         </x-container>
         @else
-        <x-input.input wire:model.lazy="desain" type="file">
+        <x-input.input wire:model.lazy="temp" type="file">
             <x-slot name="label">Desain</x-slot>
         </x-input.input>
         @endif

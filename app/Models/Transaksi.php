@@ -33,4 +33,9 @@ class Transaksi extends Model
     {
         return $this->belongsTo('App\Models\Arsitek');
     }
+
+    public function pembayaran()
+    {
+        return $this->hasOne('App\Models\Pembayaran');
+    }
 }

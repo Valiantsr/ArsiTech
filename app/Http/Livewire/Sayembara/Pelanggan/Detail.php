@@ -30,19 +30,37 @@ class Detail extends Component
     {
         dd($this->detail);
         $data = Transaksi::find($id);
-        $data->update([
+        $tolak = $data->update([
             'status' => 'ditolak'
         ]);
-        $this->emit('alert', ['type'  => 'success', 'message' =>  'Data sayembara dari arsitek ' . $data->arsitek->nama_depan . $data->arsitek->nama_belakang . ' Ditolak']);
+        session()->flash('message', 'Data Penawaran ' . $data->arsitek->nama_depan . ' ' . $data->arsitek->nama_belakang . ' Berhasil ditolak.');
+        return redirect()->route('pelanggan.sayembara.detail', $id);
     }
 
     public function setuju($id)
     {
         $data = Transaksi::find($id);
+        // dd($data->sayembara);
+        $tolak = Transaksi::where('sayembara_id', $data->sayembara->id)
+            ->whereNotIn('id', [$id])->get();
         $data->update([
-            'status' => 'ditolak'
+            'status' => 'dipilih'
         ]);
-        $this->emit('alert', ['type'  => 'success', 'message' =>  'Data sayembara dari arsitek ' . $data->arsitek->nama_depan . $data->arsitek->nama_belakang . ' Disetujui']);
+        $data->sayembara([
+            'status' => 'menunggu pembayaran'
+        ]);
+        foreach ($tolak as $t) {
+            $t->update([
+                'status' => 'ditolak'
+            ]);
+        }
+        session()->flash('message', 'Data Penawaran ' . $data->arsitek->nama_depan . ' ' . $data->arsitek->nama_belakang . ' Berhasil dipilih.');
+        return redirect()->route('pelanggan.sayembara.detail', $id);
+    }
+
+    public function kembali()
+    {
+        return redirect()->route('pelanggan.sayembara.index');
     }
 
     public function render()

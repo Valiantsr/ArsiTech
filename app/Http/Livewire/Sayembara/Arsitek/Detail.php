@@ -12,23 +12,19 @@ class Detail extends Component
 {
     use WithFileUploads;
 
-    public $sayembaraId, $nama, $awal, $akhir, $luas, $konsep, $harga, $pelanggan, $desain, $status;
+    public $sayembaraId, $nama, $awal, $akhir, $luas, $konsep, $harga, $pelanggan, $desain, $status, $temp;
 
     public function mount($id)
     {
-        // dd($id);
         $data = Sayembara::find($id);
         $transaksi = Transaksi::where('arsitek_id', auth()->user()->arsitek->id)
             ->where('sayembara_id', $data->id)
-            // ->whereNull('desain_id')
             ->first();
-        // dd($id, $transaksi);
         if ($transaksi->desain) {
             $this->desain = $transaksi->desain->gambar;
         } else {
             $this->desain = null;
         }
-        // dd($data, $this->desain);
         $this->sayembaraId = $data->id;
         $this->nama = $data->nama;
         $this->awal = $data->tanggal;
@@ -37,14 +33,11 @@ class Detail extends Component
         $this->pelanggan = $data->pelanggan->nama_depan . ' ' . $data->pelanggan->nama_belakang;
         $this->konsep = $data->konsep->nama;
         $this->harga = $data->konsep->harga;
-        if ($transaksi->desain) {
-            $this->desain = $transaksi->desain->gambar;
-        }
         $this->status = $data->status;
     }
 
     protected $rules = [
-        'desain'  => 'required|image|mimes:jpg,png|max:5000'
+        'temp'  => 'required|image|mimes:jpg,png|max:5000'
     ];
 
     public function updated($propertyName)
@@ -59,11 +52,13 @@ class Detail extends Component
 
     public function desain()
     {
+
         $this->validate();
-        $file = $this->desain;
+        $file = $this->temp;
         $desain = 'desain_' . time() . '_' . auth()->user()->arsitek->nama_depan . '.' . $file->getClientOriginalExtension();
-        // dd($desain);
-        $alamat_desain = $this->desain->storeAs('foto/arsitek/desain', $desain);
+
+        $alamat_desain = $this->temp->storeAs('foto/arsitek/desain', $desain);
+        // dd($alamat_desain);
 
         $data = Transaksi::where([
             ['sayembara_id', '=', $this->sayembaraId],
@@ -81,8 +76,8 @@ class Detail extends Component
             'total' => $this->harga * $this->luas,
             'status' => 'diproses'
         ]);
-
-        $this->emit('alert', ['type' => 'success', 'message' => 'Desain Berhasil di Unggah']);
+        session()->flash('message', 'Data Desain Sudah Ditambah menunggu persetujuan pelanggan.');
+        return redirect()->route('sayembara.index');
     }
 
     public function render()

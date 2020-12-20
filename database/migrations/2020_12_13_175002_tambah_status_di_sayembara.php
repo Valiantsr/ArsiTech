@@ -21,6 +21,7 @@ class TambahStatusDiSayembara extends Migration
                 'menunggu',
                 'diproses',
                 'menunggu pembayaran',
+                'verif pembayaran',
                 'selesai'
             ])->default('belum diverifikasi');
         });

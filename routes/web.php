@@ -11,6 +11,7 @@ use App\Http\Controllers\Pelanggan\DashboardController as PelangganDashboardCont
 
 use App\Http\Controllers\Arsitek\ProfilController as ProfilArsitek;
 use App\Http\Controllers\Arsitek\SayembaraController as ArsitekSayembaraController;
+use App\Http\Controllers\Pelanggan\PembayaranController;
 use App\Http\Controllers\Pelanggan\ProfilController as ProfilPelanggan;
 use App\Http\Controllers\Pelanggan\SayembaraController;
 use Illuminate\Support\Facades\Route;
@@ -83,6 +84,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/sayembara', SayembaraController::class)->name('pelanggan.sayembara.index');
         Route::get('/sayembara/detail/{id}', [SayembaraController::class, 'detail'])->name('pelanggan.sayembara.detail');
         Route::get('/sayembara/tambah', [SayembaraController::class, 'create'])->name('pelanggan.sayembara.create');
+
+        //Pembayaran
+        Route::get('sayembara/pembayaran', PembayaranController::class)->name('pelanggan.pembayaran.index');
+        Route::get('sayembara/pembayaran/detail/{id}', [PembayaranController::class, 'detail'])->name('pelanggan.pembayaran.detail');
+        Route::get('sayembara/{id}/pembayaran/tambah', [PembayaranController::class, 'create'])->name('pelanggan.pembayaran.create');
     });
 });
 
