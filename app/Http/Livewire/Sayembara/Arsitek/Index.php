@@ -23,7 +23,7 @@ class Index extends Component
         $this->diproses = Transaksi::where('arsitek_id', auth()->user()->arsitek->id)
             ->whereNotNull('desain_id')
             ->get();
-        dd($this->waiting, $this->diproses);
+        // dd($this->waiting, $this->diproses);
     }
 
     public function join($id)

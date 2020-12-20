@@ -16,12 +16,19 @@ class Detail extends Component
 
     public function mount($id)
     {
-        dd($id);
+        // dd($id);
         $data = Sayembara::find($id);
         $transaksi = Transaksi::where('arsitek_id', auth()->user()->arsitek->id)
-            ->whereNull('desain_id')
+            ->where('sayembara_id', $data->id)
+            // ->whereNull('desain_id')
             ->first();
-        dd($data, $transaksi->desain);
+        // dd($id, $transaksi);
+        if ($transaksi->desain) {
+            $this->desain = $transaksi->desain->gambar;
+        } else {
+            $this->desain = null;
+        }
+        // dd($data, $this->desain);
         $this->sayembaraId = $data->id;
         $this->nama = $data->nama;
         $this->awal = $data->tanggal;

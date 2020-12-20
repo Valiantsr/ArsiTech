@@ -26,7 +26,7 @@
         <x-input.input wire:model="pelanggan" readonly>
             <x-slot name="label">Pelanggan</x-slot>
         </x-input.input>
-        {{-- dd() --}}
+        {{-- {{dd($desain)}} --}}
         @if ($desain)
         <x-container class="text-center">
             <x-input.label>Desain</x-input.label>
@@ -37,7 +37,7 @@
             <x-slot name="label">Desain</x-slot>
         </x-input.input>
         @endif
-        @if ($status == 'menunggu')
+        @if ($desain == null)
         <x-button.button type="submit" color="primary" class="float-right">Tambah Desain
         </x-button.button>
         @endif
