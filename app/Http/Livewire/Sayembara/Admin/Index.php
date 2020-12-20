@@ -15,15 +15,9 @@ class Index extends Component
         // dd($this->data[1]);
     }
 
-    public function verifikasi($id)
+    public function detail($id)
     {
-        // dd('masuk');
-        $data = Sayembara::find($id);
-        $data->update([
-            'status' => 'terverifikasi'
-        ]);
-        session()->flash('message', 'Data Sayembara' . $data->nama . ' telah diverifikasi.');
-        return redirect()->route('sayembara.verif.index');
+        return redirect()->route('sayembara.verif.pembayaran', $id);
     }
 
     public function render()

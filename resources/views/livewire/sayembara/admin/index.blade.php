@@ -25,6 +25,8 @@
             <td>
                 @if ($k->status == 'terverifikasi')
                 <span class="badge badge-success">{{$k->status}}</span>
+                @elseif ($k->status == 'verif pembayaran')
+                <span class="badge badge-info">{{$k->status}}</span>
                 @else
                 <span class="badge badge-danger">{{$k->status}}</span>
                 @endif
@@ -34,6 +36,11 @@
                 <x-button.button wire:click="verifikasi({{$k->id}})" color="primary" class="btn-sm">
                     <x-icon type="pencil-alt" />
                     Verifikasi
+                </x-button.button>
+                @elseif($k->status == 'verif pembayaran')
+                <x-button.button wire:click="detail({{$k->id}})" color="primary" class="btn-sm">
+                    <x-icon type="pencil-alt" />
+                    Detail
                 </x-button.button>
                 @endif
             </td>

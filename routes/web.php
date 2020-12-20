@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/arsitek/detail/{id}', [UserController::class, 'show'])->name('arsitek.verif.detail');
         Route::get('/pelanggan', [UserController::class, 'pelanggan'])->name('pelanggan.verif.index');
         Route::get('/sayembara', [AdminSayembaraController::class, 'index'])->name('sayembara.verif.index');
+        Route::get('/pembayaran/detail/{id}', [AdminSayembaraController::class, 'pembayaran'])->name('sayembara.verif.pembayaran');
 
         // Konsep
         Route::get('/konsep', [KonsepController::class, 'index'])->name('konsep.index');

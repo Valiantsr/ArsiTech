@@ -15,4 +15,15 @@ class SayembaraController extends Controller
             'active' => 'sayembara'
         ]);
     }
+
+    public function pembayaran($id)
+    {
+        // dd('masuk');
+        return view('Admin.verifikasi.pembayaran', [
+            'title' => 'verifikasi',
+            'subtitle' => 'pembayaran',
+            'active' => 'sayembara',
+            'id' => $id
+        ]);
+    }
 }
