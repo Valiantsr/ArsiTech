@@ -16,8 +16,12 @@ class Detail extends Component
 
     public function mount($id)
     {
+        dd($id);
         $data = Sayembara::find($id);
-        // dd($data->transaksi->desain);
+        $transaksi = Transaksi::where('arsitek_id', auth()->user()->arsitek->id)
+            ->whereNull('desain_id')
+            ->first();
+        dd($data, $transaksi->desain);
         $this->sayembaraId = $data->id;
         $this->nama = $data->nama;
         $this->awal = $data->tanggal;
@@ -26,15 +30,10 @@ class Detail extends Component
         $this->pelanggan = $data->pelanggan->nama_depan . ' ' . $data->pelanggan->nama_belakang;
         $this->konsep = $data->konsep->nama;
         $this->harga = $data->konsep->harga;
-        if ($data->transaksi->desain) {
-            $this->desain = $data->transaksi->desain->gambar;
+        if ($transaksi->desain) {
+            $this->desain = $transaksi->desain->gambar;
         }
-        // $data1 = Transaksi::where([
-        //     ['sayembara_id', '=', $this->sayembaraId],
-        //     ['arsitek_id', '=', auth()->user()->arsitek->id]
-        // ])->first();
         $this->status = $data->status;
-        // dd($data->status);
     }
 
     protected $rules = [

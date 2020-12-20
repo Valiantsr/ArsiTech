@@ -80,7 +80,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/profil/edit', [ProfilPelanggan::class, 'edit'])->name('pelanggan.edit');
 
         //sayembara
-        Route::get('/sayembara', [SayembaraController::class, 'create'])->name('pelanggan.sayembara.create');
+        Route::get('/sayembara', SayembaraController::class)->name('pelanggan.sayembara.index');
+        Route::get('/sayembara/detail/{id}', [SayembaraController::class, 'detail'])->name('pelanggan.sayembara.detail');
+        Route::get('/sayembara/tambah', [SayembaraController::class, 'create'])->name('pelanggan.sayembara.create');
     });
 });
 

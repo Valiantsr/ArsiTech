@@ -14,12 +14,16 @@ class Index extends Component
     {
         $this->verif = Sayembara::where('status', 'terverifikasi')
             ->orWhere('status', 'menunggu')
+            ->orWhere('status', 'diproses')
             ->get();
-        $this->waiting = Sayembara::where('status', 'menunggu')->get();
+        $this->waiting = Sayembara::join('transaksi', function ($join) {
+            $join->on('sayembara.id', '=', 'transaksi.sayembara_id')
+                ->where('transaksi.arsitek_id', '=', auth()->user()->arsitek->id);
+        })->get();
         $this->diproses = Transaksi::where('arsitek_id', auth()->user()->arsitek->id)
             ->whereNotNull('desain_id')
             ->get();
-        // dd($this->waiting, $this->diproses);
+        dd($this->waiting, $this->diproses);
     }
 
     public function join($id)

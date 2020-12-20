@@ -27,8 +27,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('konsep.index') }}"
-                        class="nav-link {{ $active == 'konsep' ? 'active' : '' }}">
+                    <a href="{{ route('konsep.index') }}" class="nav-link {{ $active == 'konsep' ? 'active' : '' }}">
                         <x-icon class="nav-icon fas fa-" type="book" />
                         <p>
                             Konsep
@@ -83,8 +82,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('desain.index') }}"
-                        class="nav-link {{ $active == 'desain' ? 'active' : '' }}">
+                    <a href="{{ route('desain.index') }}" class="nav-link {{ $active == 'desain' ? 'active' : '' }}">
                         <x-icon class="nav-icon fas fa-" type="book" />
                         <p>
                             Desain
@@ -92,7 +90,8 @@
                     </a>
                 </li>
                 <li class="nav-header"></li>
-                <li class="nav-item has-treeview {{ $active == 'profil.index' || $active == 'portofolio' ? 'menu-open' : '' }}">
+                <li
+                    class="nav-item has-treeview {{ $active == 'profil.index' || $active == 'portofolio' ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <x-icon class="nav-icon fas fa-" type="user" />
                         <p>
@@ -102,14 +101,16 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('arsitek.profil') }}" class="nav-link {{ $active == 'profil.index' ? 'active' : '' }}">
-                            <x-icon class="nav-icon fas fa-" type="circle" />
+                            <a href="{{ route('arsitek.profil') }}"
+                                class="nav-link {{ $active == 'profil.index' ? 'active' : '' }}">
+                                <x-icon class="nav-icon fas fa-" type="circle" />
                                 <p>Profil</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('portofolio.index') }}" class="nav-link {{ $active == 'portofolio' ? 'active' : '' }}">
-                            <x-icon class="nav-icon fas fa-" type="circle" />
+                            <a href="{{ route('portofolio.index') }}"
+                                class="nav-link {{ $active == 'portofolio' ? 'active' : '' }}">
+                                <x-icon class="nav-icon fas fa-" type="circle" />
                                 <p>Portofolio</p>
                             </a>
                         </li>
@@ -126,14 +127,31 @@
                     </a>
                 </li>
                 <li class="nav-header"></li>
-                <li class="nav-item">
-                    <a href="{{ route('pelanggan.sayembara.create') }}"
-                        class="nav-link {{ $active == 'sayembara' ? 'active' : '' }}">
+                <li
+                    class="nav-item has-treeview {{ $active == 'sayembara.index' || $active == 'sayembara.create' ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link">
                         <x-icon class="nav-icon fas fa-" type="user" />
                         <p>
                             Sayembara
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('pelanggan.sayembara.index') }}"
+                                class="nav-link {{ $active == 'sayembara.index' ? 'active' : '' }}">
+                                <x-icon class="nav-icon fas fa-" type="circle" />
+                                <p>Daftar Sayembara</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pelanggan.sayembara.create') }}"
+                                class="nav-link {{ $active == 'sayembara.create' ? 'active' : '' }}">
+                                <x-icon class="nav-icon fas fa-" type="circle" />
+                                <p>Tambah Sayembara</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-header"></li>
                 <li class="nav-item">
