@@ -22,7 +22,7 @@ class Index extends Component
             'status' => 'terverifikasi'
         ]);
         session()->flash('message', 'Data Sayembara ' . $data->nama . ' telah diverifikasi');
-        return redirect()->route();
+        return redirect()->route('sayembara.verif.index');
     }
 
     public function detail($id)
