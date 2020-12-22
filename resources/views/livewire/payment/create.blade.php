@@ -10,9 +10,19 @@
             <x-slot name="label">Nomor Rekening</x-slot>
         </x-input.input>
 
-        <x-input.input value="Rp. {{number_format($total)}}" readonly>
-            <x-slot name="label">Total Biaya</x-slot>
-        </x-input.input>
+        <x-container class="row">
+            <x-container class="col-md-6 col-sm-12">
+                <x-input.input wire:model="arsitek" readonly>
+                    <x-slot name="label">Transfer ke</x-slot>
+                </x-input.input>
+            </x-container>
+            <x-container class="col-md-6 col-sm-12">
+                <x-input.input value="Rp. {{number_format($total)}}" readonly>
+                    <x-slot name="label">Total Biaya</x-slot>
+                </x-input.input>
+            </x-container>
+        </x-container>
+
 
         <x-input.input wire:model.lazy="temp" type="file">
             <x-slot name="label">Bukti</x-slot>

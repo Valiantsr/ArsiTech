@@ -19,7 +19,8 @@ class Sayembara extends Model
         'akhir',
         'luas_bangunan',
         'pelanggan_id',
-        'status'
+        'status',
+        'read'
     ];
 
     public function pelanggan()

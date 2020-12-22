@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Arsitek extends Component
 {
-    public $email, $nik, $ktp, $nama, $jenis_kelamin, $tanggal_lahir, $alamat, $no_hp;
+    public $email, $nik, $ktp, $nama, $jenis_kelamin, $tanggal_lahir, $alamat, $no_hp, $no_rek;
 
     public function mount()
     {
@@ -22,7 +22,9 @@ class Arsitek extends Component
         $this->tanggal_lahir    = $data->tanggal_lahir;
         $this->alamat           = $data->alamat;
         $this->no_hp            = $data->no_hp;
-        // }
+        if ($data->no_rek) {
+            $this->no_rek           = $data->no_rek;
+        }
     }
 
     public function edit()

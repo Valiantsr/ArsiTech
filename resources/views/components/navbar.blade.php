@@ -19,16 +19,41 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+        @if (Auth::user()->role == 'arsitek')
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="far fa-bell"></i>
+                <span class="badge badge-warning navbar-badge">{{count($data)}}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <span class="dropdown-item dropdown-header">{{count($data)}} Daftar Penawaran</span>
+                @foreach ($data as $d)
+                {{-- <form wire:submit.prevent="read({{$d->id}})"> --}}
+                {{-- @method('put') --}}
+
+                {{-- <button wire:click='read({{$d->id}})' class="dropdown-item float-right" type="submit">
+                <i class="fas fa-circle mr-2"><span>Pengajuan {{$d->sayembara->nama}}</span></i>
+                {{$d->status}}
+                </button> --}}
+                <x-button.button wire:click="read({{$d->id}})" color='' class="dropdown-item float-right">
+                    <x-icon type="circle mr-2" />
+                    <span>Pengajuan {{$d->sayembara->nama}}</span>
+                    {{$d->status}}
+                </x-button.button>
+                {{-- </form> --}}
+                @endforeach
+            </div>
+        </li>
+        @endif
+
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ auth()->user()->avatar }}" class="user-image img-circle elevation-2"
-                    alt="User Image">
+                <img src="{{ auth()->user()->avatar }}" class="user-image img-circle elevation-2" alt="User Image">
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary mb-2">
-                    <img src="{{ auth()->user()->avatar }}" class="img-circle elevation-2"
-                        alt="User Image">
+                    <img src="{{ auth()->user()->avatar }}" class="img-circle elevation-2" alt="User Image">
                     <p>
                         @if (auth()->user()->role == 'admin')
                         {{ auth()->user()->email }}
@@ -37,7 +62,7 @@
                         @else
                         {{ Auth::user()->pelanggan->nama_depan }}
                         @endif
-                        
+
                         <small>Member since {{ auth()->user()->created_at }}</small>
                     </p>
                 </li>

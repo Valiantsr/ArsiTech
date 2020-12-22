@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Payment;
 
 use App\Models\Pembayaran;
+use App\Models\Sayembara;
 use App\Models\Transaksi;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -11,17 +12,22 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $atas, $nomor, $temp, $bukti, $namaSayembara, $total, $transaksiId, $data;
+    public $atas, $nomor, $temp, $bukti, $namaSayembara, $total, $transaksiId, $sayembaraId, $data, $arsitek;
 
     public function mount($id)
     {
-        $data = Transaksi::find($id);
-        // dd($data->total);
-        if ($data) {
-            $this->transaksiId = $data->id;
-            $this->namaSayembara = $data->sayembara->nama;
-            $this->total = $data->total;
-            $this->data = $data;
+        $sayembara = Sayembara::find($id);
+        // $data = Transaksi::;
+        // dd($sayembara->transaksi, $id);
+        if ($sayembara) {
+            $this->transaksiId = $sayembara->transaksi->id;
+            $this->sayembaraId = $sayembara->id;
+            $this->namaSayembara = $sayembara->nama;
+            $this->total = $sayembara->transaksi->total;
+            $this->data = $sayembara->transaksi;
+            if ($sayembara->transaksi->arsitek->no_rek) {
+                $this->arsitek = $sayembara->transaksi->arsitek->no_rek;
+            }
         }
     }
 
@@ -38,27 +44,31 @@ class Create extends Component
 
     public function store()
     {
-        // dd($this->data->sayembara);
-        $this->validate();
+        // dd($this->sayembaraId);
+        if ($this->arsitek) {
+            $this->validate();
 
-        $file = $this->temp;
-        $bukti = 'bukti_' . time() . '_' . auth()->user()->pelanggan->nama_depan . '.' . $file->getClientOriginalExtension();
-        // dd($bukti);
-        $alamat_bukti = $this->temp->storeAs('foto/pelanggan/bukti', $bukti);
+            $file = $this->temp;
+            $bukti = 'bukti_' . time() . '_' . auth()->user()->pelanggan->nama_depan . '.' . $file->getClientOriginalExtension();
+            // dd($bukti);
+            $alamat_bukti = $this->temp->storeAs('foto/pelanggan/bukti', $bukti);
 
-        Pembayaran::create([
-            'bukti' => $alamat_bukti,
-            'atas_nama' => $this->atas,
-            'no_rekening' => $this->nomor,
-            'transaksi_id' => $this->transaksiId
-        ]);
+            Pembayaran::create([
+                'bukti' => $alamat_bukti,
+                'atas_nama' => $this->atas,
+                'no_rekening' => $this->nomor,
+                'transaksi_id' => $this->sayembaraId
+            ]);
 
-        $this->data->sayembara->update([
-            'status' => 'verif pembayaran'
-        ]);
+            $this->data->sayembara->update([
+                'status' => 'verif pembayaran'
+            ]);
 
-        session()->flash('message', 'Data Pembayaran sudah diinput menunggu verifikasi.');
-        return redirect()->route('pelanggan.sayembara.index');
+            session()->flash('message', 'Data Pembayaran sudah diinput menunggu verifikasi.');
+            return redirect()->route('pelanggan.sayembara.index');
+        } else {
+            $this->emit('alert', ['type' => 'error', 'message' => 'Rekening arsitek belum diinputkan hubungi arsitek dulu']);
+        }
     }
 
     public function render()

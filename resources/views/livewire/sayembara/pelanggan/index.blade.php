@@ -32,25 +32,29 @@
                 @endif
             </td>
             <td>
+                {{-- {{dd($k->status)}} --}}
                 @if ($k->transaksi == null)
                 <span class="badge badge-danger">Belum ada penawaran</span>
-                @else
-                @if ($k->transaksi->status == 'diproses')
+                @elseif($k->status == 'menunggu')
                 <x-button.button wire:click="detail({{$k->id}})" color="primary" class="btn-sm">
                     <x-icon type="pencil-alt" />
                     Detail
                 </x-button.button>
-                @elseif ($k->transaksi->status == 'dipilih')
-                @if ($k->status == 'verif pembayaran')
-                <span class="badge badge-danger">{{$k->status}}</span>
-                @else
+                @elseif($k->status == 'menunggu pembayaran')
                 <x-button.button wire:click="bayar({{$k->id}})" color="primary" class="btn-sm">
                     <x-icon type="pencil-alt" />
                     Bayar
                 </x-button.button>
                 @endif
+                {{-- @if ($k->status == 'menunggu')
+
+                @elseif ($k->transaksi->status == 'dipilih')
+                @if ($k->status == 'verif pembayaran')
+                <span class="badge badge-danger">{{$k->status}}</span>
+                @else
                 @endif
                 @endif
+                @endif --}}
                 {{-- {{dd($k->transaksi)}} --}}
             </td>
             <?php $no++ ?>

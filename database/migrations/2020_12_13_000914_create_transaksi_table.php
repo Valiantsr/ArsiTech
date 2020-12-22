@@ -19,6 +19,7 @@ class CreateTransaksiTable extends Migration
             $table->foreignId('desain_id')->nullable()->constrained('desain')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('arsitek_id')->constrained('arsitek')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            $table->boolean('read')->default(false);
         });
     }
 

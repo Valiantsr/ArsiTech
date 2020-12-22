@@ -3,8 +3,7 @@
         <x-container class="card card-primary card-outline">
             <x-container class="card-body box-profile">
                 <x-container class="text-center">
-                    <img class="profile-user-img img-fluid img-circle"
-                        src="{{auth()->user()->avatar}}"
+                    <img class="profile-user-img img-fluid img-circle" src="{{auth()->user()->avatar}}"
                         alt="User profile picture">
                 </x-container>
 
@@ -15,11 +14,10 @@
                 <p class="text-muted text-center">Pelanggan</p>
                 @endif
                 <x-container class="text-center mt-5">
-                    <img class="img-fluid img-circle"
-                        src="{{asset('storage/'. auth()->user()->arsitek->ktp)}}"
+                    <img class="img-fluid img-circle" src="{{asset('storage/'. auth()->user()->arsitek->ktp)}}"
                         alt="Foto Ktp">
                 </x-container>
-                
+
             </x-container>
         </x-container>
     </x-container>
@@ -51,6 +49,16 @@
             <x-input.input wire:model="no_hp" readonly>
                 <x-slot name="label">No Handphone</x-slot>
             </x-input.input>
+
+            @if ($no_rek)
+            <x-input.input wire:model="no_rek" readonly>
+                <x-slot name="label">Nomor Rekening</x-slot>
+            </x-input.input>
+            @else
+            <x-input.input wire:model="no_rek" placeholder="Kosong" readonly>
+                <x-slot name="label">Nomor Rekening</x-slot>
+            </x-input.input>
+            @endif
 
             <x-button.button wire:click="edit" color="primary" class="float-right">Ganti Profil
             </x-button.button>

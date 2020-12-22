@@ -44,6 +44,10 @@
             <x-slot name="label">No Handphone</x-slot>
         </x-input.input>
 
+        <x-input.input wire:model="no_rek">
+            <x-slot name="label">Nomor Rekening</x-slot>
+        </x-input.input>
+
         <x-button.button type="submit" color="primary" class="float-right">Ubah Profil
         </x-button.button>
     </form>

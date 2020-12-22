@@ -16,7 +16,8 @@ class Transaksi extends Model
         'desain_id',
         'arsitek_id',
         'total',
-        'status'
+        'status',
+        'read'
     ];
 
     public function desain()

@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Arsitek extends Component
 {
-    public $userId, $email, $nik, $ktp, $nama_depan, $nama_belakang, $jenis_kelamin, $tanggal_lahir, $alamat, $no_hp;
+    public $userId, $email, $nik, $ktp, $nama_depan, $nama_belakang, $jenis_kelamin, $tanggal_lahir, $alamat, $no_hp, $no_rek;
 
     public function mount()
     {
@@ -37,7 +37,8 @@ class Arsitek extends Component
         'jenis_kelamin' => 'required',
         'tanggal_lahir' => 'required',
         'alamat'        => 'required|min:15',
-        'no_hp'         => 'required'
+        'no_hp'         => 'required',
+        'no_rek'        => 'required|numeric'
     ];
 
     public function updated($propertyName)
@@ -69,7 +70,8 @@ class Arsitek extends Component
             'alamat' => $this->alamat,
             'no_hp' => $this->no_hp,
             'nik' => $this->nik,
-            'ktp' => $this->ktp
+            'ktp' => $this->ktp,
+            'no_rek' => $this->no_rek
         ]);
 
         //flash message

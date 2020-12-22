@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Nama Arsitek</th>
                 <th>Nama</th>
                 <th>Konsep</th>
                 <th>Gambar</th>
@@ -15,6 +16,7 @@
             @foreach ($detail as $k)
             <tr>
                 <td>{{$no}}</td>
+                <td>{{$k->arsitek->nama_depan.' '.$k->arsitek->nama_belakang}}</td>
                 <td>{{$k->desain->nama}}</td>
                 <td>{{$k->sayembara->konsep->nama}}</td>
                 <td>

@@ -43,10 +43,11 @@ class Detail extends Component
         // dd($data->sayembara);
         $tolak = Transaksi::where('sayembara_id', $data->sayembara->id)
             ->whereNotIn('id', [$id])->get();
+        // dd($tolak);
         $data->update([
             'status' => 'dipilih'
         ]);
-        $data->sayembara([
+        $data->sayembara->update([
             'status' => 'menunggu pembayaran'
         ]);
         foreach ($tolak as $t) {
