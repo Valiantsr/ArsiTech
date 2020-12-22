@@ -52,11 +52,9 @@ class Arsitek extends Component
     public function update()
     {
         $this->validate();
-
+        // dd($this->alamat);
         $user = \Auth::user();
         $arsitek = ModelsArsitek::where('id', $this->userId)->first();
-
-        // dd($user, $arsitek);
 
         $user->update([
             'email' => $this->email

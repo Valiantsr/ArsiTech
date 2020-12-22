@@ -36,7 +36,7 @@
             <x-slot name="label">Tanggal Lahir</x-slot>
         </x-input.datepicker>
 
-        <x-input.textarea value="{{$alamat}}" placeholder="{{$alamat}}">
+        <x-input.textarea wire:model="alamat" value="{{$alamat}}">
             <x-slot name="label">Alamat</x-slot>
         </x-input.textarea>
 

@@ -28,19 +28,11 @@
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">{{count($data)}} Daftar Penawaran</span>
                 @foreach ($data as $d)
-                {{-- <form wire:submit.prevent="read({{$d->id}})"> --}}
-                {{-- @method('put') --}}
-
-                {{-- <button wire:click='read({{$d->id}})' class="dropdown-item float-right" type="submit">
-                <i class="fas fa-circle mr-2"><span>Pengajuan {{$d->sayembara->nama}}</span></i>
-                {{$d->status}}
-                </button> --}}
                 <x-button.button wire:click="read({{$d->id}})" color='' class="dropdown-item float-right">
                     <x-icon type="circle mr-2" />
                     <span>Pengajuan {{$d->sayembara->nama}}</span>
                     {{$d->status}}
                 </x-button.button>
-                {{-- </form> --}}
                 @endforeach
             </div>
         </li>
@@ -67,7 +59,6 @@
                     </p>
                 </li>
                 <li class="user-footer">
-                    <a href="#" class="btn btn-default">Profile</a>
                     <a class="btn btn-danger float-right" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
