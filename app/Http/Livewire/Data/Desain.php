@@ -11,7 +11,7 @@ class Desain extends Component
 
     public function mount()
     {
-        $this->data = ModelsDesain::all();
+        $this->data = ModelsDesain::where('arsitek_id', auth()->user()->arsitek->id)->get();
     }
 
     public function tambah()
