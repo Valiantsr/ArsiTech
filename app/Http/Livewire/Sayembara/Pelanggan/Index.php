@@ -11,7 +11,6 @@ class Index extends Component
     public function mount()
     {
         $this->data = Sayembara::where('pelanggan_id', auth()->user()->pelanggan->id)->get();
-        // dd($this->data);
     }
 
     public function detail($id)

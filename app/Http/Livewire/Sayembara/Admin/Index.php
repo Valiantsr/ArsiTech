@@ -21,11 +21,7 @@ class Index extends Component
         $data->update([
             'status' => 'terverifikasi'
         ]);
-<<<<<<< Updated upstream
         session()->flash('message', 'Data Sayembara ' . $data->nama . ' telah diverifikasi');
-=======
-        session()->flash('message', 'Data Sayembara ' . $data->nama . ' telah diverifikasi.');
->>>>>>> Stashed changes
         return redirect()->route('sayembara.verif.index');
     }
 
