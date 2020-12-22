@@ -19,7 +19,7 @@ class Detail extends Component
             ->where('sayembara_id', $data->id)
             ->first();
         $pembayaran = Pembayaran::where('transaksi_id', $transaksi->id)->first();
-        dd($data, $transaksi->id, $pembayaran);
+        // dd($data, $transaksi->id, $pembayaran);
 
         $this->sayembaraId = $data->id;
         $this->transaksiId = $transaksi->id;
