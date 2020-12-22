@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Detail extends Component
 {
-    public $detail;
+    public $detail, $sayembaraId;
 
     public function mount($id)
     {
@@ -16,6 +16,8 @@ class Detail extends Component
         $detail = Transaksi::where('sayembara_id', $id)
             ->whereNotNull('desain_id')
             ->get();
+        // dd($data);
+        $this->sayembaraId = $data->id;
         if (count($detail) == 0) {
             $this->detail = [];
             session()->flash('message', 'Data penawaran Sayembara tidak ditemukan atau desain belum di inputkan.');
@@ -27,14 +29,28 @@ class Detail extends Component
 
     public function tolak($id)
     {
-        // dd();
         $data = Transaksi::find($id);
-        // dd($data, $id);
+        // $cek =
+        // dd($data, $this->sayembaraId);
         $tolak = $data->update([
             'status' => 'ditolak'
         ]);
-        session()->flash('message', 'Data Penawaran ' . $data->arsitek->nama_depan . ' ' . $data->arsitek->nama_belakang . ' Berhasil ditolak.');
-        return redirect()->route('pelanggan.sayembara.detail', $id);
+        $cek = Transaksi::where([
+            ['sayembara_id', $this->sayembaraId],
+            ['status', 'diproses']
+        ])->get();
+
+        if (count($cek) > 0) {
+            session()->flash('message', 'Data Penawaran ' . $data->arsitek->nama_depan . ' ' . $data->arsitek->nama_belakang . ' Berhasil ditolak.');
+            return redirect()->route('pelanggan.sayembara.detail', $this->sayembaraId);
+        } else {
+            $data = Sayembara::find($this->sayembaraId);
+            $data->update([
+                'status' => 'selesai'
+            ]);
+            session()->flash('message', 'Sayembara Selesai Have a nice day !!!.');
+            return redirect()->route('pelanggan.sayembara.index');
+        }
     }
 
     public function setuju($id)

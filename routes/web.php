@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
         //Desain
         Route::get('/desain', DesainController::class)->name('desain.index');
         Route::get('/desain/create', [DesainController::class, 'create'])->name('desain.create');
+        Route::get('/desain/detail/{id}', [DesainController::class, 'detail'])->name('desain.detail');
 
         //Portofolio
         Route::get('/portofolio', PortofolioController::class)->name('portofolio.index');

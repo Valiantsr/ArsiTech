@@ -24,4 +24,14 @@ class DesainController extends Controller
             'active'        => 'desain',
         ]);
     }
+
+    public function detail($id)
+    {
+        return view('Arsitek.desain.detail', [
+            'title'         => 'desain',
+            'subtitle'      => 'create',
+            'active'        => 'desain',
+            'id'            => $id
+        ]);
+    }
 }

@@ -30,6 +30,21 @@ class Index extends Component
         return redirect()->route('portofolio.create');
     }
 
+    public function detail($id)
+    {
+        return redirect()->route('desain.detail', $id);
+    }
+
+    public function destroy($id)
+    {
+        $target = DetailPorto::find($id);
+        // dd($target);
+        $target->delete();
+
+        session()->flash('message', 'Data Berhasil Dihapus.');
+        return redirect()->route('portofolio.index');
+    }
+
     public function render()
     {
         return view('livewire.portofolio.index');

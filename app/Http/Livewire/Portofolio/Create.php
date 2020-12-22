@@ -40,17 +40,31 @@ class Create extends Component
     {
         $this->validate();
 
-        $porto = Portofolio::create([
-            'nama'          => $this->nama,
-            'deskripsi'     => $this->deskripsi,
-            'arsitek_id'    => \Auth::user()->arsitek->id
-        ]);
+        $exist = DetailPorto::where('portofolio_id', $this->portoId)->exists();
 
-        DetailPorto::create([
-            'portofolio_id' => $porto->id,
-            'desain_id'     => $this->desain,
-            'konsep_id'     => $this->konsep
-        ]);
+        // $exist = Transaksi::where([
+        //     ['sayembara_id', '=', $data->id],
+        //     ['arsitek_id', '=', auth()->user()->arsitek->id]
+        // ])->exists();
+        if ($exist) {
+            DetailPorto::create([
+                'portofolio_id' => $this->portoId,
+                'desain_id'     => $this->desain,
+                'konsep_id'     => $this->konsep
+            ]);
+        } else {
+            $porto = Portofolio::create([
+                'nama'          => $this->nama,
+                'deskripsi'     => $this->deskripsi,
+                'arsitek_id'    => \Auth::user()->arsitek->id
+            ]);
+
+            DetailPorto::create([
+                'portofolio_id' => $porto->id,
+                'desain_id'     => $this->desain,
+                'konsep_id'     => $this->konsep
+            ]);
+        }
 
         session()->flash('message', 'Data Portofolio ' . $this->nama . ' Berhasil Ditambahkan.');
         return redirect()->route('portofolio.index');

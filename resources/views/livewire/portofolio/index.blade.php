@@ -1,5 +1,5 @@
 <x-container>
-    @if ($portoId)
+    {{-- @if ($portoId)
      <x-form>
         <x-slot name="title">Data {{$nama}}</x-slot>
 
@@ -16,9 +16,9 @@
         </x-button.button>
         @endif
     </x-form>
-    @endif
+    @endif --}}
 
-    <x-table title="Data Portofolio" id="dt">
+    <x-table title="Data Portofolio {{$nama}}" id="dt">
         <x-button.button wire:click="tambah" color="success" class="btn-sm float-right mb-2">
             <x-icon type="plus" />
             Tambah
@@ -47,7 +47,7 @@
                         <x-icon type="pencil-alt" />
                         Ubah
                     </x-button.button>
-                    <x-button.button wire:click="detail({{$k->id}})" color="danger" class="btn-sm">
+                    <x-button.button wire:click="$emit('destroy', {{$k->id}})" color="danger" class="btn-sm">
                         <x-icon type="trash" />
                         Hapus
                     </x-button.button>

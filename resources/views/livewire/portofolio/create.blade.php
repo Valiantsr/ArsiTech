@@ -2,15 +2,7 @@
     <x-slot name="title">Data Portofolio</x-slot>
     <form wire:submit.prevent="store" method="POST">
         @csrf
-        @if ($portoId)
-        <x-input.input wire:model="nama" readonly>
-            <x-slot name="label">Nama</x-slot>
-        </x-input.input>
-
-        <x-input.textarea wire:model="deskripsi" readonly>
-            <x-slot name="label">Deskripsi</x-slot>
-        </x-input.textarea>
-        @else
+        @if ($portoId == null)
         <x-input.input wire:model="nama">
             <x-slot name="label">Nama</x-slot>
         </x-input.input>
@@ -67,3 +59,12 @@
 
 </script>
 @endpush
+
+
+{{-- <x-input.input wire:model="nama" readonly>
+    <x-slot name="label">Nama</x-slot>
+</x-input.input>
+
+<x-input.textarea wire:model="deskripsi" readonly>
+    <x-slot name="label">Deskripsi</x-slot>
+</x-input.textarea> --}}

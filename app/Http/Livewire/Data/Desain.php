@@ -21,7 +21,7 @@ class Desain extends Component
 
     public function detail($id)
     {
-        return redirect()->route('konsep.detail', $id);
+        return redirect()->route('desain.detail', $id);
     }
 
     public function render()
